@@ -6,9 +6,10 @@
 /*   By: delina <delina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:39:03 by delina            #+#    #+#             */
-/*   Updated: 2023/10/24 11:52:50 by delina           ###   ########.fr       */
+/*   Updated: 2023/11/04 19:26:38 by delina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
 int	ft_isprint(int c)
 {
@@ -16,11 +17,9 @@ int	ft_isprint(int c)
 		return (1);
 	return (0);
 }
-
-#include <stdio.h>
+/*
 int main(void)
 {
-	printf("%d", ft_isprint('h'));
-	printf("%d", ft_isprint('\n'));
-}
-
+	printf("%d\n", ft_isprint('h'));
+	printf("%d\n", ft_isprint('\n'));
+}*/

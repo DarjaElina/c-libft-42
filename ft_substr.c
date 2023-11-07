@@ -1,43 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: delina <delina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 14:43:20 by delina            #+#    #+#             */
-/*   Updated: 2023/11/05 20:29:51 by delina           ###   ########.fr       */
+/*   Created: 2023/10/31 21:24:03 by delina            #+#    #+#             */
+/*   Updated: 2023/11/05 20:19:38 by delina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	int	i;
-	int	res;
-	int	sign;
+	char	*res;
+	size_t	i;
+	size_t	j;
+	size_t	str_len;
 
+	str_len = ft_strlen(s);
+	if (start >= str_len || len == 0 || start + len >= str_len)
+		return (NULL);
 	i = 0;
-	res = 0;
-	sign = 1;
-	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+	j = 0;
+	res = (char *)malloc((len + 1) * sizeof(char));
+	if (!res)
+		return (NULL);
+	while (i < start)
 		i++;
-	if (str[i] == '-' || str[i] == '+')
+	while (j < len)
 	{
-		if (str[i] == '-')
-			sign = sign * -1;
+		res[j] = s[i];
 		i++;
+		j++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		res = res * 10 + (str[i] - 48);
-		i++;
-	}
-	return (res * sign);
+	res[j] = '\0';
+	return (res);
 }
 /*#include <stdio.h>
-int	main(void)
+int main(void)
 {
-	char str[100] = "s-ome -123 string";
-	printf("%d", ft_atoi(str));
+	printf("%s", ft_substr("Hello world", 6, 3));
 }*/

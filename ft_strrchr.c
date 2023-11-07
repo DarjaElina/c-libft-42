@@ -6,14 +6,12 @@
 /*   By: delina <delina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 20:29:52 by delina            #+#    #+#             */
-/*   Updated: 2023/10/28 20:59:58 by delina           ###   ########.fr       */
+/*   Updated: 2023/11/05 16:13:40 by delina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
+#include "libft.h"
 
-size_t	ft_strlen(const char* s);
-
-const char* ft_strrchr(const char *s, int c)
+char	*ft_strrchr(const char *s, int c)
 {
 	size_t	len;
 
@@ -21,22 +19,20 @@ const char* ft_strrchr(const char *s, int c)
 	while (*s != '\0')
 		s++;
 	if (c == '\0')
-		return (s);
+		return ((char *)s);
 	while (len >= 0)
 	{
 		if (*s == c)
-			return (s);
+			return ((char *)s);
 		len--;
 		s--;
 	}
 	return (NULL);
 }
-
+/*#include <stdio.h>
 int	main(void)
 {
 	int 	c = 'e';
 	char 	*s =  "hello world";
 	printf("%s", ft_strrchr(s, c));
-}
-
-
+}*/

@@ -6,22 +6,22 @@
 /*   By: delina <delina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 19:47:52 by delina            #+#    #+#             */
-/*   Updated: 2023/10/23 21:05:45 by delina           ###   ########.fr       */
+/*   Updated: 2023/11/04 19:22:28 by delina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-int ft_isalpha(int c)
+int	ft_isalpha(int c)
 {
-	if ((c >= 'a' && c <= 'z') ||
-	       (c >= 'A' && c <= 'Z'))
+	if ((c >= 'a' && c <= 'z')
+		|| (c >= 'A' && c <= 'Z'))
 		return (1);
-	return (0);	
+	return (0);
 }
-
-#include <stdio.h>
+/*
 int	main(void)
 {
-	printf("%d", ft_isalpha('a'));
-	printf("%d", ft_isalpha('1'));
-	printf("%d", ft_isalpha('S'));
-}
+	printf("%d\n", ft_isalpha('a'));
+	printf("%d\n", ft_isalpha('1'));
+	printf("%d\n", ft_isalpha('S'));
+}*/

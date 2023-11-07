@@ -6,13 +6,14 @@
 /*   By: delina <delina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:53:29 by delina            #+#    #+#             */
-/*   Updated: 2023/10/28 20:02:16 by delina           ###   ########.fr       */
+/*   Updated: 2023/11/04 19:34:12 by delina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stddef.h>
+#include "libft.h"
+
 size_t	ft_strlen(const char *str)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (str[i])
@@ -21,10 +22,9 @@ size_t	ft_strlen(const char *str)
 	}
 	return (i);
 }
-
 /*#include <stdio.h>
 int	main(void)
 {
-	printf("%zu", ft_strlen("Hello world"));
-	printf("%zu", ft_strlen(""));
+	printf("%zu\n", ft_strlen("Hello world"));
+	printf("%zu\n", ft_strlen(""));
 }*/

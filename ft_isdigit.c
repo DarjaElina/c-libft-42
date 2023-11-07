@@ -6,9 +6,10 @@
 /*   By: delina <delina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 21:07:09 by delina            #+#    #+#             */
-/*   Updated: 2023/10/23 21:10:00 by delina           ###   ########.fr       */
+/*   Updated: 2023/11/04 19:22:07 by delina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
 int	ft_isdigit(int c)
 {
@@ -16,11 +17,10 @@ int	ft_isdigit(int c)
 		return (1);
 	return (0);
 }
-
-#include <stdio.h>
+/*#include <stdio.h>
 int	main(void)
 {
-	printf("%d", ft_isdigit('a'));
-	printf("%d", ft_isdigit('7'));
-	printf("%d", ft_isdigit('/'));
-}
+	printf("%d\n", ft_isdigit('a'));
+	printf("%d\n", ft_isdigit('7'));
+	printf("%d\n", ft_isdigit('/'));
+}*/

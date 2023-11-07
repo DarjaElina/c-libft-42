@@ -1,43 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: delina <delina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 14:43:20 by delina            #+#    #+#             */
-/*   Updated: 2023/11/05 20:29:51 by delina           ###   ########.fr       */
+/*   Created: 2023/11/04 00:05:53 by delina            #+#    #+#             */
+/*   Updated: 2023/11/06 22:16:05 by delina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	int	i;
-	int	res;
-	int	sign;
+	unsigned int	i;
 
 	i = 0;
-	res = 0;
-	sign = 1;
-	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
+	if (!s && !f)
+		return ;
+	while (s[i] != '\0')
 	{
-		if (str[i] == '-')
-			sign = sign * -1;
+		f(i, &s[i]);
 		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		res = res * 10 + (str[i] - 48);
-		i++;
-	}
-	return (res * sign);
 }
 /*#include <stdio.h>
+void	test(unsigned int index, char *s)
+{
+	if (index % 2 != 0)
+		*s = ft_toupper((unsigned char)*s);
+}
 int	main(void)
 {
-	char str[100] = "s-ome -123 string";
-	printf("%d", ft_atoi(str));
+	char s[100] = "hello, world";
+	ft_striteri(s, test);
+	printf("%s", s);
 }*/

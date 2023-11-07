@@ -1,43 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: delina <delina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 14:43:20 by delina            #+#    #+#             */
-/*   Updated: 2023/11/05 20:29:51 by delina           ###   ########.fr       */
+/*   Created: 2023/11/04 14:06:49 by delina            #+#    #+#             */
+/*   Updated: 2023/11/06 22:42:19 by delina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+void	ft_putnbr_fd(int n, int fd)
 {
-	int	i;
-	int	res;
-	int	sign;
-
-	i = 0;
-	res = 0;
-	sign = 1;
-	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
+	if (n < 0)
 	{
-		if (str[i] == '-')
-			sign = sign * -1;
-		i++;
+		ft_putchar_fd('-', fd);
+		n = -n;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+	if (n >= 10)
 	{
-		res = res * 10 + (str[i] - 48);
-		i++;
+		ft_putnbr_fd(n / 10, fd);
+		ft_putnbr_fd(n % 10, fd);
 	}
-	return (res * sign);
+	if (n < 10)
+		ft_putchar_fd(n + 48, fd);
 }
-/*#include <stdio.h>
-int	main(void)
+/*int	main(void)
 {
-	char str[100] = "s-ome -123 string";
-	printf("%d", ft_atoi(str));
+	ft_putnbr_fd(42, 1);
 }*/

@@ -6,9 +6,10 @@
 /*   By: delina <delina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:30:51 by delina            #+#    #+#             */
-/*   Updated: 2023/10/24 11:38:12 by delina           ###   ########.fr       */
+/*   Updated: 2023/11/06 22:59:27 by delina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
 int	ft_isascii(int c)
 {
@@ -16,10 +17,9 @@ int	ft_isascii(int c)
 		return (1);
 	return (0);
 }
-
-#include <stdio.h>
+/*#include <stdio.h>
 int main(void)
 {
-	printf("%d", ft_isascii('6'));
-	printf("%d", ft_isascii(-1));
-}
+	printf("%d\n", ft_isascii('6'));
+	printf("%d\n", ft_isascii(-1));
+*/
