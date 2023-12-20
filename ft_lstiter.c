@@ -1,35 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: delina <delina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 11:57:59 by delina            #+#    #+#             */
-/*   Updated: 2023/11/19 18:22:43 by daraelina        ###   ########.fr       */
+/*   Created: 2023/11/16 23:22:18 by delina            #+#    #+#             */
+/*   Updated: 2023/11/19 19:03:13 by daraelina        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	unsigned char	*ptr;
-	size_t			i;
-
-	i = 0;
-	ptr = (unsigned char *)b;
-	while (i < len)
+	if (!lst || !f)
+		return ;
+	while (lst)
 	{
-		ptr[i] = (unsigned char)c;
-		i++;
+		f(lst->content);
+		lst = lst->next;
 	}
-	return (b);
 }
 /*#include <stdio.h>
-int	main(void)
+void test(void *content)
 {
-	char str[10] = "Hello";
-	printf("Before: %s\n", str);
-	ft_memset(str, '1', 7);
-	printf("After: %s\n", str);
+	printf("Content: %s", (char *)content);
+}
+
+int main(void)
+{
+	t_list *node1 = ft_lstnew("Hello");
+	t_list *node2 = ft_lstnew("World");
+	t_list *node3 = ft_lstnew("! ");
+
+	node1->next = node2;
+	node2->next = node3;
+	node3->next = NULL;
+
+	ft_lstiter(node2, test);
 }*/

@@ -1,35 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: delina <delina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 11:57:59 by delina            #+#    #+#             */
-/*   Updated: 2023/11/19 18:22:43 by daraelina        ###   ########.fr       */
+/*   Created: 2023/11/15 00:14:26 by delina            #+#    #+#             */
+/*   Updated: 2023/11/19 18:24:15 by daraelina        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+int	ft_lstsize(t_list *lst)
 {
-	unsigned char	*ptr;
-	size_t			i;
+	t_list	*temp;
+	int		i;
 
 	i = 0;
-	ptr = (unsigned char *)b;
-	while (i < len)
+	temp = lst;
+	while (temp)
 	{
-		ptr[i] = (unsigned char)c;
+		temp = temp->next;
 		i++;
 	}
-	return (b);
+	return (i);
 }
 /*#include <stdio.h>
-int	main(void)
+int main(void)
 {
-	char str[10] = "Hello";
-	printf("Before: %s\n", str);
-	ft_memset(str, '1', 7);
-	printf("After: %s\n", str);
+	t_list p1;
+	t_list p2;
+	t_list p3;
+	int i = 6;
+
+	int *p = &i;
+
+	p1.content = p;
+	p1.next = &p2;
+	p2.content = p;
+	p2.next = &p3;
+	p3.content = p;
+	p3.next = NULL;
+
+	printf("%d", ft_lstsize(&p1));
 }*/

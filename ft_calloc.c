@@ -6,7 +6,7 @@
 /*   By: delina <delina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 19:48:19 by delina            #+#    #+#             */
-/*   Updated: 2023/11/05 19:03:38 by delina           ###   ########.fr       */
+/*   Updated: 2023/11/25 22:57:16 by daraelina        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -15,7 +15,9 @@ void	*ft_calloc(size_t count, size_t size)
 {
 	void	*ptr;
 
-	ptr = malloc(count * size);
+	if (count && size && count > (2147483647 / size))
+		return (NULL);
+	ptr = (void *)malloc(count * size);
 	if (!ptr)
 		return (NULL);
 	ft_bzero(ptr, count * size);

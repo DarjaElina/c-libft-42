@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: delina <delina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 11:57:59 by delina            #+#    #+#             */
-/*   Updated: 2023/11/19 18:22:43 by daraelina        ###   ########.fr       */
+/*   Created: 2023/11/15 12:44:08 by delina            #+#    #+#             */
+/*   Updated: 2023/11/19 19:04:01 by daraelina        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+t_list	*ft_lstlast(t_list *lst)
 {
-	unsigned char	*ptr;
-	size_t			i;
-
-	i = 0;
-	ptr = (unsigned char *)b;
-	while (i < len)
+	while (lst)
 	{
-		ptr[i] = (unsigned char)c;
-		i++;
+		if (lst->next == NULL)
+			return (lst);
+		lst = lst->next;
 	}
-	return (b);
+	return (lst);
 }
 /*#include <stdio.h>
-int	main(void)
+int main(void)
 {
-	char str[10] = "Hello";
-	printf("Before: %s\n", str);
-	ft_memset(str, '1', 7);
-	printf("After: %s\n", str);
+	t_list f;
+	t_list s;
+	t_list t;
+	f.next = &s;
+	s.next = &t;
+	t.next = NULL;
+
+	printf("%p", ft_lstlast(&f));
 }*/

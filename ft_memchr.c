@@ -6,7 +6,7 @@
 /*   By: delina <delina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 17:23:39 by delina            #+#    #+#             */
-/*   Updated: 2023/11/05 17:43:31 by delina           ###   ########.fr       */
+/*   Updated: 2023/11/21 14:29:11 by daraelina        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -20,7 +20,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	character = (unsigned char)c;
 	ptr = (unsigned char *)s;
 	i = 0;
-	while (ptr[i] && i < n)
+	while (i < n)
 	{
 		if (ptr[i] == character)
 			return (&ptr[i]);

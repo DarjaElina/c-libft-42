@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: delina <delina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 11:57:59 by delina            #+#    #+#             */
-/*   Updated: 2023/11/19 18:22:43 by daraelina        ###   ########.fr       */
+/*   Created: 2023/11/12 16:36:02 by delina            #+#    #+#             */
+/*   Updated: 2023/11/19 19:05:19 by daraelina        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+t_list	*ft_lstnew(void *content)
 {
-	unsigned char	*ptr;
-	size_t			i;
+	t_list	*ptr;
 
-	i = 0;
-	ptr = (unsigned char *)b;
-	while (i < len)
-	{
-		ptr[i] = (unsigned char)c;
-		i++;
-	}
-	return (b);
+	ptr = (t_list *)malloc(sizeof(t_list));
+	if (!ptr)
+		return (NULL);
+	ptr->content = content;
+	ptr->next = NULL;
+	return (ptr);
 }
 /*#include <stdio.h>
-int	main(void)
+int main(void)
 {
-	char str[10] = "Hello";
-	printf("Before: %s\n", str);
-	ft_memset(str, '1', 7);
-	printf("After: %s\n", str);
+	int *ptr;
+	int	i = 5;
+	ptr = &i;
+	t_list *List = ft_lstnew(ptr);
+	printf("%d", *(int*)List->content);
 }*/

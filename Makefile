@@ -40,22 +40,40 @@ SRCS = \
       ft_putstr_fd.c \
       ft_putendl_fd.c \
       ft_putnbr_fd.c
+
+B_SRCS = \
+	 ft_lstnew.c \
+	 ft_lstadd_front.c \
+	 ft_lstsize.c \
+	 ft_lstlast.c \
+	 ft_lstadd_back.c \
+	 ft_lstdelone.c \
+	 ft_lstclear.c \
+	 ft_lstiter.c \
+	 ft_lstmap.c
+
+
 OBJS = $(SRCS:.c=.o)
+
+B_OBJS = $(B_SRCS:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(AR) $@ $^
+	$(AR) -r $@ $^
+
+bonus: $(OBJS) $(B_OBJS)
+	$(AR) -r $(NAME) $^
 
 %.o: %.c
 	$(CC) -c $(CFLAGS) $^
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(B_OBJS)
 
 fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
 
-
+.PHONY: bonus all clean fclean re

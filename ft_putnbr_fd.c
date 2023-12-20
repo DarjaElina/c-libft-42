@@ -6,27 +6,32 @@
 /*   By: delina <delina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 14:06:49 by delina            #+#    #+#             */
-/*   Updated: 2023/11/06 22:42:19 by delina           ###   ########.fr       */
+/*   Updated: 2023/11/12 16:11:06 by delina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	if (n < 0)
+	if (n == -2147483648)
+		ft_putstr_fd("-2147483648", fd);
+	else
 	{
-		ft_putchar_fd('-', fd);
-		n = -n;
+		if (n < 0)
+		{
+			ft_putchar_fd('-', fd);
+			n = -n;
+		}
+		if (n >= 10)
+		{
+			ft_putnbr_fd(n / 10, fd);
+			ft_putnbr_fd(n % 10, fd);
+		}
+		if (n < 10)
+			ft_putchar_fd(n + 48, fd);
 	}
-	if (n >= 10)
-	{
-		ft_putnbr_fd(n / 10, fd);
-		ft_putnbr_fd(n % 10, fd);
-	}
-	if (n < 10)
-		ft_putchar_fd(n + 48, fd);
 }
 /*int	main(void)
 {
-	ft_putnbr_fd(42, 1);
+	ft_putnbr_fd(-2147483648, 1);
 }*/

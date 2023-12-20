@@ -1,35 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: delina <delina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 11:57:59 by delina            #+#    #+#             */
-/*   Updated: 2023/11/19 18:22:43 by daraelina        ###   ########.fr       */
+/*   Created: 2023/11/16 21:50:08 by delina            #+#    #+#             */
+/*   Updated: 2023/11/19 18:21:41 by daraelina        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	unsigned char	*ptr;
-	size_t			i;
-
-	i = 0;
-	ptr = (unsigned char *)b;
-	while (i < len)
+	if (lst && del)
 	{
-		ptr[i] = (unsigned char)c;
-		i++;
+		del(lst->content);
+		free(lst);
 	}
-	return (b);
 }
 /*#include <stdio.h>
-int	main(void)
+void del(void *content)
 {
-	char str[10] = "Hello";
-	printf("Before: %s\n", str);
-	ft_memset(str, '1', 7);
-	printf("After: %s\n", str);
+	if (content)
+		free(content);
+}
+int main(void)
+{
+	t_list *node;
+	node = (t_list *)malloc(sizeof(t_list));
+	node->content = "Hello world";
+
+	printf("Before: %s\n", (char *)node->content);
+	
+	ft_lstdelone(node, del);
+
+	printf("After: %s\n", (char *)node->content);
 }*/

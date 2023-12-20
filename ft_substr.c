@@ -6,7 +6,7 @@
 /*   By: delina <delina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 21:24:03 by delina            #+#    #+#             */
-/*   Updated: 2023/11/05 20:19:38 by delina           ###   ########.fr       */
+/*   Updated: 2023/11/25 23:28:53 by daraelina        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,29 +17,40 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char	*res;
 	size_t	i;
 	size_t	j;
-	size_t	str_len;
+	size_t	alloc_len;
+	size_t	remaining_len;
 
-	str_len = ft_strlen(s);
-	if (start >= str_len || len == 0 || start + len >= str_len)
+	remaining_len = ft_strlen(s + start);
+	alloc_len = remaining_len;
+	if (len < remaining_len)
+		alloc_len = len;
+	if (!s)
 		return (NULL);
-	i = 0;
 	j = 0;
-	res = (char *)malloc((len + 1) * sizeof(char));
+	res = (char *)malloc((alloc_len + 1) * sizeof(char));
 	if (!res)
 		return (NULL);
-	while (i < start)
-		i++;
-	while (j < len)
-	{
-		res[j] = s[i];
-		i++;
-		j++;
-	}
+	i = start;
+	while (s[i] && j < len)
+		res[j++] = s[i++];
 	res[j] = '\0';
 	return (res);
 }
 /*#include <stdio.h>
+#include <string.h>
 int main(void)
 {
-	printf("%s", ft_substr("Hello world", 6, 3));
+	//char *s = "all of this !";
+	//size_t size = strlen(s);
+	//char *ret = ft_substr(s, 0, size);
+	//printf("%s", ret);
+//	printf("%s", ft_substr("Hello world", 6, 3));i
+//	char *str = "01234";
+//	size_t size = 10;
+//	char *ret = ft_substr(str, 10, size);
+	//if (!strncmp(ret, "", 1))
+	//{
+	//	printf("%s", "TEST_SUCCESS");
+	//}
+	//printf("%s", "TEST_FAILED");
 }*/

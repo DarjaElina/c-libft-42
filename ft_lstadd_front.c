@@ -1,35 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: delina <delina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 11:57:59 by delina            #+#    #+#             */
-/*   Updated: 2023/11/19 18:22:43 by daraelina        ###   ########.fr       */
+/*   Created: 2023/11/13 22:55:08 by delina            #+#    #+#             */
+/*   Updated: 2023/11/19 18:23:21 by daraelina        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	unsigned char	*ptr;
-	size_t			i;
-
-	i = 0;
-	ptr = (unsigned char *)b;
-	while (i < len)
+	if (lst && new)
 	{
-		ptr[i] = (unsigned char)c;
-		i++;
+		new->next = *lst;
+		*lst = new;
 	}
-	return (b);
 }
-/*#include <stdio.h>
-int	main(void)
+/*int main(void)
 {
-	char str[10] = "Hello";
-	printf("Before: %s\n", str);
-	ft_memset(str, '1', 7);
-	printf("After: %s\n", str);
+
 }*/

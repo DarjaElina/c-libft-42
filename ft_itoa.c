@@ -6,7 +6,7 @@
 /*   By: delina <delina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 22:41:30 by delina            #+#    #+#             */
-/*   Updated: 2023/11/06 15:59:04 by delina           ###   ########.fr       */
+/*   Updated: 2023/11/19 18:21:21 by daraelina        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -15,14 +15,10 @@ static int	ft_get_len(int n)
 {
 	int	len;
 
+	len = 0;
 	if (n <= 0)
-	{
 		len = 1;
-		n = -n;
-	}
-	else
-		len = 0;
-	while (n > 0)
+	while (n != 0)
 	{
 		n = n / 10;
 		len++;
@@ -30,35 +26,29 @@ static int	ft_get_len(int n)
 	return (len);
 }
 
-static int	ft_is_negative(int n)
-{
-	if (n < 0)
-		return (1);
-	return (0);
-}
-
 char	*ft_itoa(int n)
 {
-	int		str_len;
-	int		sign;
-	char	*res_str;
+	char			*res_str;
+	long int		nbr;
+	unsigned int	sign;
+	int				str_len;
 
+	nbr = n;
 	str_len = ft_get_len(n);
-	if (ft_is_negative(n))
+	sign = 0;
+	if (n < 0)
 	{
 		sign = 1;
-		n = -n;
+		nbr *= -1;
 	}
-	sign = 0;
 	res_str = (char *)malloc((str_len + 1) * sizeof(char));
 	if (!res_str)
 		return (NULL);
 	res_str[str_len] = '\0';
-	while (str_len > 0)
+	while (str_len--)
 	{
-		str_len--;
-		res_str[str_len] = n % 10 + 48;
-		n = n / 10;
+		res_str[str_len] = nbr % 10 + 48;
+		nbr = nbr / 10;
 	}
 	if (sign == 1)
 		res_str[0] = '-';
@@ -66,8 +56,9 @@ char	*ft_itoa(int n)
 }
 /*#include <stdio.h>
 int	main(void)
-{
-	printf("%s\n", ft_itoa(17));
-	printf("%s\n", ft_itoa(-17));
-	printf("%s\n", ft_itoa(0));
+{	
+	printf("%s\n", ft_itoa(-2147483648));
+	//printf("%s\n", ft_itoa(-623));
+	//printf("%s\n", ft_itoa(-17));
+	//printf("%s\n", ft_itoa(0));
 }*/

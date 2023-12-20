@@ -6,7 +6,7 @@
 /*   By: delina <delina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 18:34:07 by delina            #+#    #+#             */
-/*   Updated: 2023/11/05 16:13:52 by delina           ###   ########.fr       */
+/*   Updated: 2023/11/21 14:36:03 by daraelina        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -15,7 +15,7 @@ char	*ft_strchr(const char *s, int c)
 {
 	while (*s != '\0')
 	{
-		if (*s == c)
+		if (*s == (unsigned char)c)
 			return ((char *)s);
 		s++;
 	}

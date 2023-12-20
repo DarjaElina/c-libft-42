@@ -6,7 +6,7 @@
 /*   By: delina <delina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 00:05:53 by delina            #+#    #+#             */
-/*   Updated: 2023/11/06 22:16:05 by delina           ###   ########.fr       */
+/*   Updated: 2023/11/19 15:50:49 by daraelina        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -16,7 +16,7 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 	unsigned int	i;
 
 	i = 0;
-	if (!s && !f)
+	if (!s || !f)
 		return ;
 	while (s[i] != '\0')
 	{
