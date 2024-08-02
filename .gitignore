@@ -1,2 +1,4 @@
 a.out
 libftTester
+*.o
+libft.a

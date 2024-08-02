@@ -6,91 +6,92 @@
 /*   By: delina <delina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 15:00:58 by delina            #+#    #+#             */
-/*   Updated: 2023/11/27 00:09:31 by daraelina        ###   ########.fr       */
+/*   Updated: 2023/12/29 21:15:56 by daraelina        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-static size_t	ft_count_len(const char *s, char c)
+static size_t	count_segments(char const *str, char delimiter)
 {
-	size_t	len_count;
+	size_t	count;
+	size_t	i;
 
-	len_count = 0;
-	while (s[len_count] != '\0' && s[len_count] != c)
-		len_count++;
-	return (len_count);
-}
-
-static size_t	ft_count_strs(const char *s, char c)
-{
-	size_t	str_count;
-	size_t	start;
-
-	str_count = 0;
-	start = 0;
-	while (s[start] == c)
-		start++;
-	while (s[start] != '\0')
+	count = 0;
+	i = 0;
+	while (*(str + i))
 	{
-		if (s[start] == c)
+		if (*(str + i) != delimiter)
 		{
-			str_count++;
-			while (s[start] == c)
-				start++;
+			count++;
+			while (*(str + i) && *(str + i) != delimiter)
+				i++;
 		}
 		else
-			start++;
+		{
+			i++;
+		}
 	}
-	return (str_count);
+	return (count);
 }
 
-static char	*ft_strldup(const char *s1, char c)
+static size_t	get_segment_length(char const *str, char delimiter)
 {
-	char	*s2;
-	size_t	i;
-	size_t	len;
+	size_t	length;
 
-	len = ft_count_len(s1, c);
-	i = 0;
-	s2 = (char *)malloc((len + 1) * sizeof(char));
-	if (!s2)
-		return (NULL);
-	while (s1[i] != '\0' && s1[i] != c)
+	length = 0;
+	while (*(str + length) && *(str + length) != delimiter)
+		length++;
+	return (length);
+}
+
+static void	free_segment_array(size_t index, char **segments)
+{
+	while (index > 0)
 	{
-		s2[i] = s1[i];
-		i++;
+		index--;
+		free(*(segments + index));
 	}
-	s2[i] = '\0';
-	return (s2);
+	free(segments);
 }
 
-char	**ft_split(const char *s, char c)
+static char	**split(char const *str, char del, char **segs, size_t seg_count)
 {
-	char	**res;
 	size_t	i;
 	size_t	j;
-	size_t	len_count;
 
-	if (!s)
-		return (NULL);
-	j = 0;
 	i = 0;
-	res = (char **)malloc((ft_count_strs(s, c) + 1) * sizeof(char *));
-	if (!res)
-		return (NULL);
-	while (s[i] != '\0' && j <= ft_count_strs(s, c))
+	j = 0;
+	while (i < seg_count)
 	{
-		len_count = ft_count_len(&s[i], c);
-		if (len_count > 0)
+		while (*(str + j) && *(str + j) == del)
+			j++;
+		*(segs + i) = ft_substr(str, j, get_segment_length(&*(str + j), del));
+		if (!*(segs + i))
 		{
-			res[j++] = ft_strldup(&s[i], c);
-			i += len_count;
+			free_segment_array(i, segs);
+			return (NULL);
 		}
-		else
-			i++;
+		while (*(str + j) && *(str + j) != del)
+			j++;
+		i++;
 	}
-	res[j] = NULL;
-	return (res);
+	*(segs + i) = NULL;
+	return (segs);
+}
+
+char	**ft_split(char const *str, char delimiter)
+{
+	char	**segments;
+	size_t	segment_count;
+
+	if (!str)
+		return (NULL);
+	segment_count = count_segments(str, delimiter);
+	segments = (char **)malloc(sizeof(char *) * (segment_count + 1));
+	if (!segments)
+		return (NULL);
+	segments = split(str, delimiter, segments, segment_count);
+	return (segments);
 }
 /*#include <stdio.h>
 #include <string.h>

@@ -6,36 +6,34 @@
 /*   By: delina <delina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 22:07:15 by delina            #+#    #+#             */
-/*   Updated: 2023/11/19 18:25:24 by daraelina        ###   ########.fr       */
+/*   Updated: 2023/12/26 21:50:41 by daraelina        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*res;
-	t_list	*temp;
+	t_list	*new_list;
+	t_list	*new_node;
+	void	*set;
 
 	if (!lst || !f || !del)
 		return (NULL);
-	res = ft_lstnew(f(lst->content));
-	if (!res)
-		return (NULL);
-	temp = res;
-	lst = lst->next;
+	new_list = NULL;
 	while (lst)
 	{
-		res->next = ft_lstnew(f(lst->content));
-		if (!res->next)
+		set = f(lst->content);
+		new_node = ft_lstnew(set);
+		if (!new_node)
 		{
-			ft_lstclear(&temp, del);
-			return (NULL);
+			del(set);
+			ft_lstclear(&new_list, (*del));
+			return (new_list);
 		}
-		res = res->next;
+		ft_lstadd_back(&new_list, new_node);
 		lst = lst->next;
 	}
-	res->next = NULL;
-	return (temp);
+	return (new_list);
 }
 /*void *test(void *content)
 {
@@ -65,7 +63,7 @@ int main(void)
 	f->next = s;
 	s->next = NULL;
 
-	t_list *res = ft_lstmap(f, test, del);
+	t_list *res = ft_lstmap(s, test, del);
 
 	printf("%s", (char *)res->content);	
 }*/

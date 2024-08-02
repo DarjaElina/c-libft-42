@@ -6,63 +6,33 @@
 /*   By: delina <delina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 18:48:04 by delina            #+#    #+#             */
-/*   Updated: 2023/11/25 22:33:51 by daraelina        ###   ########.fr       */
+/*   Updated: 2023/12/29 19:50:03 by daraelina        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+char	*ft_strnstr(char const *haystack, char const *needle, size_t n)
 {
 	size_t	i;
-	size_t	needle_len;
 
-	if (needle == NULL || *needle == '\0')
+	if (!haystack && !n)
+		return (NULL);
+	if (!*needle)
 		return ((char *)haystack);
-	needle_len = ft_strlen(needle);
-	i = 0;
-	while (*haystack != '\0' && i < len)
+	while (*haystack && n--)
 	{
-		while (*needle != '\0' && *needle == *haystack)
+		i = 0;
+		while (*(haystack + i) == *(needle + i)
+			&& *(needle + i) && i <= n)
 		{
-			needle++;
-			haystack++;
-		}
-		if (*needle == '\0')
-		{
-			if (i + needle_len <= len)
-				return ((char *)haystack - needle_len);
-			else
-				return (NULL);
+			if (!*(needle + i + 1))
+				return ((char *)haystack);
+			i++;
 		}
 		haystack++;
-		i++;
 	}
 	return (NULL);
 }
-
-/*char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
-{
-	size_t		i;
-	size_t		j;
-
-	i = 0;
-	if (*needle == '\0' || needle == NULL)
-		return ((char*)haystack);
-	while (haystack[i] != '\0' && i < len)
-	{
-		j = 0;
-		while (needle[j] == haystack[i + j] && i + j < len)
-		{
-			if (needle[j + 1] == '\0')
-			{
-				return ((char*)haystack + i);
-			}
-			j++;
-		}
-		i++;
-	}
-	return (NULL);
-}*/
 
 /*#include <stdio.h>
 int	main(void)
