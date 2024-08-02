@@ -1,0 +1,42 @@
+name: Test workflow
+on:
+  push:
+    branches: 
+      - main
+      - actions
+      - master
+  workflow_dispatch:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - edited
+
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y valgrind
+
+      - name: Add libftTester repository
+        run: |
+          git clone https://github.com/Tripouille/libftTester.git libftTester
+        env:
+          GIT_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Check dir
+        run: | 
+          ls -la
+
+      - name: Run tests
+        working-directory: libftTester
+        run: | 
+          ls -la
+          make
+        env:
+          TERM: xterm

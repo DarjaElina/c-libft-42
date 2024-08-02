@@ -60,10 +60,10 @@ B_OBJS = $(B_SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(AR) -r $@ $^
+	$(AR) $@ $^
 
 bonus: $(OBJS) $(B_OBJS)
-	$(AR) -r $(NAME) $^
+	$(AR) $(NAME) $^
 
 %.o: %.c
 	$(CC) -c $(CFLAGS) $^
