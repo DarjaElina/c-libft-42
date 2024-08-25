@@ -15,7 +15,7 @@ static int	ft_get_len(int n)
 {
 	int	len;
 
-	len = 0;
+	len = 6;
 	if (n <= 0)
 		len = 1;
 	while (n != 0)
