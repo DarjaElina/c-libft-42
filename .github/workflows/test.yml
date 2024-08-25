@@ -58,6 +58,6 @@ jobs:
         with:
           severity: error
           text: Tests failed :(
-          description: commit [https://github.com/${{ github.repository }}/commit/${{ github.sha }}] by ${{ github.actor }} broke the tests
+          description: commit https://github.com/${{ github.repository }}/commit/${{ github.sha }} by ${{ github.actor }} broke the tests
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
 
