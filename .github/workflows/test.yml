@@ -16,6 +16,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-20.04
+    environment: prod
     steps:
       - name: Get code
         uses: actions/checkout@v4
@@ -41,23 +42,26 @@ jobs:
         env:
           TERM: xterm
 
-      - name: Force a failure
-        run: exit 1
+      # - name: Force a failure
+      #   run: exit 1
 
-      - name: Test Success
-        uses: rjstone/discord-webhook-notify@v1
-        if: ${{ success() }}
-        with:
-          severity: info
-          text: Tests Run Successfully
-          description: tests run by ${{ github.actor }} deployment url is ${{ secrets.DEPLOYMENT_URL }}
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-      - name: Tests Failed
-        uses: rjstone/discord-webhook-notify@v1
-        if: ${{ failure() }}
-        with:
-          severity: error
-          text: Tests failed :(
-          description: commit https://github.com/${{ github.repository }}/commit/${{ github.sha }} by ${{ github.actor }} broke the tests
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      # - name: Test Success
+      #   uses: rjstone/discord-webhook-notify@v1
+      #   if: ${{ success() }}
+      #   with:
+      #     severity: info
+      #     text: Tests Run Successfully
+      #     description: tests run by ${{ github.actor }} deployment url is ${{ secrets.DEPLOYMENT_URL }}
+      #     webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      # - name: Tests Failed
+      #   uses: rjstone/discord-webhook-notify@v1
+      #   if: ${{ failure() }}
+      #   with:
+      #     severity: error
+      #     text: Tests failed :(
+      #     description: commit https://github.com/${{ github.repository }}/commit/${{ github.sha }} by ${{ github.actor }} broke the tests
+      #     webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+
+      - name: Show prod secret
+        run: echo ${{ secrets.TEST }}
 
